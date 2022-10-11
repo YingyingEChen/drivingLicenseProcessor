@@ -1,0 +1,4 @@
+google-cloud
+google-cloud-documentai
+google-cloud-bigquery
+db_dtypes
