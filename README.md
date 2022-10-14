@@ -118,4 +118,5 @@ query = f"""
     LIMIT 20
 """
 query_job = client.query(query)  # Make an API request.
+query_job.to_dataframe()
 ```
