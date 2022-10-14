@@ -1,7 +1,32 @@
 from google.cloud import bigquery
 from google.cloud import documentai_v1 as documentai
 from google.cloud.exceptions import NotFound
+from google.api_core.client_options import ClientOptions
 import json
+
+def send_processing_req(project_id, location, processor_id, file_path, mime_type, GCS_INPUT_URI = None):
+    """
+    Process a document through Document AI and return a document ai object
+    """
+    
+    docai_client = documentai.DocumentProcessorServiceClient(
+        client_options = ClientOptions(api_endpoint=f'{location}-documentai.googleapis.com')
+    )
+
+    RESOURCE_NAME = docai_client.processor_path(project_id, location, processor_id)
+
+    # load file into memory
+    with open(file_path, 'rb') as image:
+        image_content = image.read()
+
+    raw_doc = documentai.RawDocument(content=image_content, mime_type=MIME_TYPE)
+    request = documentai.ProcessRequest(name=RESOURCE_NAME, raw_document=raw_doc)
+
+    result = docai_client.process_document(request=request)
+
+    document_object = result.document
+    print('Document processing complete')
+    return document_object
 
 def write_to_bq(dataset_name, table_name, entities_extracted_dict):
     """
