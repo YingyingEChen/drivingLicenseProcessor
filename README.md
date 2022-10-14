@@ -18,6 +18,10 @@ what has to be implemented
 
 # Training and Running the driving license processor
 ## Setup
+* Get the repository
+```
+git clone https://github.com/YingyingEChen/drivingLicenseProcessor.git
+```
 
 * Enable the Document AI APIs
 ```
