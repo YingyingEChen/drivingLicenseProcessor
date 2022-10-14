@@ -1,17 +1,10 @@
 # drivingLicenseProcessor
 
-```
-git clone https://github.com/YingyingEChen/drivingLicenseProcessor.git
-```
-
-Run 
-```
-drivingLicenseExtractor.ipynb
-```
 # Overview
 The Driving License processor is designed to help submit Drving license details and other documents details quickly and efficiently, minimising user error . Leveraging the GCP Document AI service in order to detect details and then convert them into digital format.  The advantage of this is allowing users to submit detials by just taking and uploading a photo, instead of manually filling out a form. This reduces the time and effort needed to complete registration processes.
 
 # Architecture
+![img/DocumentAI.drawio.png](img/DocumentAI.drawio.png)
 
 # Components
 what has been implemented
@@ -23,7 +16,7 @@ what has to be implemented
 - BigQuery - deploy job remotely 
 - GCS - create archive bucket
 
-# Running the driving license processor
+# Training and Running the driving license processor
 ## Setup
 
 * Enable the Document AI APIs
@@ -64,7 +57,7 @@ pip install google-cloud-documentai google-cloud-bigquery
 
 ## Train a UK driving license processor
 * In GCP console, navigate to Document AI page and click on "CREATE CUSTOM PROCESSOR" to create a custom processor. Enter a processor name and select the region.
-* Navigate to cloud storage and create a bucket "driving-license-training-data". Upload ```driving-license-train-data``` and ```driving-license-test-data``` folders to the bucket.
+* Navigate to Cloud Storage and create a bucket "driving-license-training-data". Upload ```driving-license-train-data``` and ```driving-license-test-data``` folders to the bucket.
 * Navigate to Document AI and go to the custom processor detail page and click on "SET DATASET LOCATION". Select the bucket location as the "Destination Path" and click on "CREATE DATA SET".
 * Navigate to the "Train" tab. Click on "IMPORT DOCUMENTS" and import all the data stored on the gcs bucket. In the "Data split" field, mark the data as '
 "Training" when upload the documents from the "driving-license-train-data" folder. Mark the data as 'Test' when uploading the documents from "driving-license-test-data" folder. In this demoAt the moment, 10 documents have been used to train the processor, and 10 documents have been used to test it.
@@ -91,7 +84,7 @@ pip install google-cloud-documentai google-cloud-bigquery
 Open a jupyter notebook or a ```.py``` file. Run the following code
 
 ```python
-from results_to_big_query import send_processing_req, process_document
+from driving_license_processor import send_processing_req, process_document
 
 PROJECT_ID = os.getenv("PROJECT_ID", "") # change to your own project id
 LOCATION = 'us' # change to your document ai location
