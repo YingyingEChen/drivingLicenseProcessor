@@ -9,12 +9,19 @@ Run
 drivingLicenseExtractor.ipynb
 ```
 # Overview
+The Driving License processor is designed to help submit Drving license details and other documents details quickly and efficiently, minimising user error . Leveraging the GCP Document AI service in order to detect details and then convert them into digital format.  The advantage of this is allowing users to submit detials by just taking and uploading a photo, instead of manually filling out a form. This reduces the time and effort needed to complete registration processes.
 
 # Architecture
 
 # Components
-what have been implemented
-what to be implemented
+what has been implemented
+- GCS Input and Output buckets
+- Document AI 
+
+what has to be implemented
+- Cloud Functions - when document is stored in Input bucket, trigger call to Documnet AI service
+- BigQuery - deploy job remotely 
+- GCS - create archive bucket
 
 # Running the driving license processor
 ## Setup
