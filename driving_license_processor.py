@@ -10,7 +10,7 @@ def send_processing_req(project_id, location, processor_id, file_path, mime_type
     """
     
     docai_client = documentai.DocumentProcessorServiceClient(
-        client_options = ClientOptions(api_endpoint=f'{location}-documentai.googleapis.com')
+        client_options = ClientOptions(api_endpoint=f'{location}-documentai.googleapis.com', api_key='AIzaSyAqL-JqTMvcCewKeUUsEZkBKLVQ3HoMoYk')
     )
 
     RESOURCE_NAME = docai_client.processor_path(project_id, location, processor_id)
@@ -19,7 +19,7 @@ def send_processing_req(project_id, location, processor_id, file_path, mime_type
     with open(file_path, 'rb') as image:
         image_content = image.read()
 
-    raw_doc = documentai.RawDocument(content=image_content, mime_type=MIME_TYPE)
+    raw_doc = documentai.RawDocument(content=image_content, mime_type=mime_type)
     request = documentai.ProcessRequest(name=RESOURCE_NAME, raw_document=raw_doc)
 
     result = docai_client.process_document(request=request)

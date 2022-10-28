@@ -82,7 +82,7 @@ pip install google-cloud-documentai google-cloud-bigquery
 | valid-to       | Plain text  | Required once |
 * Select one of the imported documents and label all the fields (Highlight the text on the image and choose the correct label). After identifying all the fields, click on ```MARK AS LABELLED```. All the imported documents need to be labelled before training the processor.
 * After labelling all the documents, click on "TRAIN NEW VERSION". Enter the version name, and click on "START TRAINING".
-* After training is complete, go to the 'MANAGE VERSIONS' tab and deploy the trained version. Once the version has been deployed, an endpoint will be available under the 'PROCESSOR DETAILS' tab.
+* After training is complete, go to the 'MANAGE VERSIONS' tab and deploy the trained version. Once the version has been deployed, an endpoint will be available under the 'PROCESSOR DETAILS' tab. If no default version is configured, set a default version first.
 
 ## Process a driving license using the trained processor
 Open a jupyter notebook or a ```.py``` file. Run the following code
